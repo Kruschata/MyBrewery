@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 
-const BreweryList = ({filter, random}) => {
+const BreweryList = ({filter, randomTrigger}) => {
     const [breweries, setBreweries] = useState([]);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        if (random) {
+        if (randomTrigger > 0) {
             fetch("https://api.openbrewerydb.org/v1/breweries/random") //returns a Promise
                 .then((response) => {
                     if (response.ok) {
@@ -21,6 +21,7 @@ const BreweryList = ({filter, random}) => {
                     setError(error);
                     console.log(error);
                 })
+
 
         } else if (filter && filter.length > 2) {
             //https://api.openbrewerydb.org/v1/breweries?by_country=" +filter + "&by_type=micro&by_" with & you can add multiple filters
@@ -57,13 +58,13 @@ const BreweryList = ({filter, random}) => {
                     console.log(error);
                 })
         }
-    }, [filter, random])
+    }, [filter, randomTrigger])
 
 
     return (
         <div>
             <h1>Brewery API</h1>
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
                     <th>Name</th>

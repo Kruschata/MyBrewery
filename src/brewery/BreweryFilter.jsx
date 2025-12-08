@@ -22,7 +22,8 @@ const BreweryFilter = ({setFilter}) => {
         onChange={e => setInput(e.target.value)}
         onKeyDown={handleKeyDown} // Event Listener für die "Enter"-Taste
       />
-      <button onClick={handleFilter}>Search</button>
+      <l>    </l>
+      <button onClick={handleFilter}  class="btn btn-outline-dark">Search</button>
     </div>
   )
 }

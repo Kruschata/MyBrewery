@@ -5,17 +5,18 @@ import BreweryRandom from "./BreweryRandom";
 
 const BreweryApp = () => {
     const [filter, setFilter] = useState('');
-    const [random,setRandom] = useState(false);
+    const [randomTrigger, setRandomTrigger] = useState(0);
 
     const handleRandomClick = () => {
-        setRandom(prevState => !prevState); // toggelt den Wert von random (true/false)
+        setRandomTrigger(prev => prev + 1);
     };
 
     return(
     <div>
         <BreweryFilter setFilter = {setFilter}/>
-        <BreweryRandom setRandom = {handleRandomClick()}/>
-        <BreweryList filter={filter} random ={random} />
+        <br/>
+        <BreweryRandom setRandom = {handleRandomClick}/> {/*Funktion ohne Klammern* handleRandomClick() läuft bei jedem Render*/}
+        <BreweryList filter={filter} randomTrigger ={randomTrigger} />
     </div>
 )
 

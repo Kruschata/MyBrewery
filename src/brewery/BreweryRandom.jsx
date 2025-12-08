@@ -1,10 +1,10 @@
-const BreweryRandom = (setRandom) =>{
+const BreweryRandom = ({setRandom}) =>{
 
 
     return (
         <div>
-           <p>Don't know what to drink? Use our Randomizer!</p>
-            <button onClick={setRandom}>I am thirsty!</button>
+           <l>Don't know what to drink? Use our Randomizer!     </l>
+            <button onClick={setRandom} class="btn btn-outline-secondary">I am thirsty!</button>
         </div>
 
     )
