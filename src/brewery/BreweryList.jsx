@@ -4,6 +4,9 @@ const BreweryList = ({filter, randomTrigger}) => {
     const [breweries, setBreweries] = useState([]);
     const [error, setError] = useState("");
 
+
+
+
     useEffect(() => {
         if (randomTrigger > 0) {
             fetch("https://api.openbrewerydb.org/v1/breweries/random") //returns a Promise
@@ -58,12 +61,11 @@ const BreweryList = ({filter, randomTrigger}) => {
                     console.log(error);
                 })
         }
-    }, [filter, randomTrigger])
+    }, [filter, randomTrigger]);
 
 
     return (
         <div>
-            <h1>Brewery API</h1>
             <table class="table">
                 <thead>
                 <tr>
@@ -99,6 +101,7 @@ const BreweryList = ({filter, randomTrigger}) => {
                 </tbody>
             </table>
         </div>
+
     )
 }
 

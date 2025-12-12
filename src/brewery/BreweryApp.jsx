@@ -14,11 +14,12 @@ const BreweryApp = () => {
 
     return(
     <div>
-        <NavigationBar/>
-        <BreweryFilter setFilter = {setFilter}/>
+        <NavigationBar></NavigationBar>
+        <p/>
+        <BreweryFilter setFilter = {setFilter} setRandomTrigger={setRandomTrigger}/>
         <br/>
-        <BreweryRandom setRandom = {handleRandomClick}/> {/*Funktion ohne Klammern* handleRandomClick() läuft bei jedem Render*/}
-        <BreweryList filter={filter} randomTrigger ={randomTrigger} />
+        <BreweryRandom setRandom = {handleRandomClick} /> {/*Funktion ohne Klammern* handleRandomClick() läuft bei jedem Render*/}
+        <BreweryList filter={filter} randomTrigger ={randomTrigger} setFilter={setFilter} setRandomTrigger={setRandomTrigger}/>
     </div>
 )
 
