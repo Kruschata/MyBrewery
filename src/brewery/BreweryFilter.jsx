@@ -31,9 +31,9 @@ const BreweryFilter = ({setFilter, setRandomTrigger}) => {
                 onKeyDown={handleKeyDown} // Event Listener für die "Enter"-Taste
             />
             <l>    </l>
-            <button onClick={handleFilter} class="btn btn-outline-dark">Search</button>
+            <button onClick={handleFilter} className="btn btn-outline-dark">Search</button>
             <l>    </l>
-            <button onClick={resetFilter} class={"btn btn-outline-danger"}>Reset</button>
+            <button onClick={resetFilter} className={"btn btn-outline-danger"}>Reset</button>
 
         </div>
     )

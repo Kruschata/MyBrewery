@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const BreweryList = ({filter, randomTrigger}) => {
+const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched}) => {
     const [breweries, setBreweries] = useState([]);
     const [error, setError] = useState("");
 
@@ -19,6 +19,7 @@ const BreweryList = ({filter, randomTrigger}) => {
                 }) //Promise -> json Data
                 .then((data) => {
                     setBreweries(data);
+                    onBreweryDataFetched(data);
                 })
                 .catch(error => {
                     setError(error);
@@ -38,6 +39,7 @@ const BreweryList = ({filter, randomTrigger}) => {
                 }) //Promise -> json Data
                 .then((data) => {
                     setBreweries(data);
+                     onBreweryDataFetched(data);
                 })
                 .catch(error => {
                     setError(error);
@@ -55,6 +57,7 @@ const BreweryList = ({filter, randomTrigger}) => {
                 }) //Promise -> json Data
                 .then((data) => {
                     setBreweries(data);
+                     onBreweryDataFetched(data);
                 })
                 .catch(error => {
                     setError(error);
@@ -65,6 +68,7 @@ const BreweryList = ({filter, randomTrigger}) => {
 
 
     return (
+
         <div>
             <table class="table">
                 <thead>
@@ -73,6 +77,7 @@ const BreweryList = ({filter, randomTrigger}) => {
                     <th>Country</th>
                     <th>Website</th>
                     <th>Type</th>
+
                 </tr>
                 </thead>
                 <tbody>
