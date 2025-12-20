@@ -1,38 +1,50 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import L from 'leaflet';
-
-// Leaflet CSS importieren
 import 'leaflet/dist/leaflet.css';
+import {
+    Map, TileLayer, Marker, Popup
+} from 'react-leaflet'
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-const BreweryMap = ({breweries}) => {
+const BreweryMap = ({ breweries, latitude, longitude, zoom }) => {
 
     useEffect(() => {
-        // Karte erstellen und auf den angegebenen Standort setzen
-        const map = L.map('map').setView([46.912915905258, 15.45518681346], 1);
+        const map = L.map('map').setView([latitude, longitude], zoom);
 
-        // OpenStreetMap Tile Layer hinzufügen
+        let DefaultIcon = L.icon({
+            iconUrl: icon,
+            shadowUrl: iconShadow
+        });
+
+        L.Marker.prototype.options.icon = DefaultIcon;
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
 
-         breweries.forEach((brewery) => {
-        if (brewery.latitude !== null && brewery.longitude !== null) {
-            L.marker([brewery.latitude, brewery.longitude])
-                .addTo(map)
-                .bindPopup(`<b>${brewery.name}</b><br>${brewery.city}`);
-        }
-    });
+        breweries.forEach((brewery) => {
+            if (brewery.latitude !== null && brewery.longitude !== null) {
+                L.marker([brewery.latitude, brewery.longitude])
+                    .addTo(map)
+                    .bindPopup(`<b>${brewery.name}</b><br>${brewery.city}`);
+            }
+        });
 
-
-        // Map bereinigen, wenn der Component unmountet
         return () => {
             map.remove();
         };
-    }, [breweries]);
+    }, [breweries, latitude, longitude, zoom]);
 
     return (
-        <div id="map" style={
-            {height: '300px'}}></div> // Höhe der Karte angeben
+        <div className="container mt-4">
+            <div
+                id="map"
+                className="border rounded shadow-sm"
+                style={{ height: '500px', width: '600px'}}
+            ></div>
+        </div>
     );
 };
 

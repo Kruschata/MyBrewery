@@ -1,14 +1,19 @@
 import {useEffect, useState} from "react";
 
-const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched}) => {
+const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, setLatitude, setLongitude, setZoom}) => {
     const [breweries, setBreweries] = useState([]);
     const [error, setError] = useState("");
 
 
-
-
     useEffect(() => {
         if (randomTrigger > 0) {
+            breweries.map (brewery => {
+                if (brewery.latitude !== null && brewery.longitude !== null)
+                setLatitude(brewery.latitude);
+                setLongitude(brewery.longitude);
+                setZoom(15);
+            })
+
             fetch("https://api.openbrewerydb.org/v1/breweries/random") //returns a Promise
                 .then((response) => {
                     if (response.ok) {
@@ -58,6 +63,8 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched}) => {
                 .then((data) => {
                     setBreweries(data);
                      onBreweryDataFetched(data);
+                     console.log(data);
+
                 })
                 .catch(error => {
                     setError(error);
@@ -67,45 +74,70 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched}) => {
     }, [filter, randomTrigger]);
 
 
+
     return (
 
-        <div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Country</th>
-                    <th>Website</th>
-                    <th>Type</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                {breweries.map(brewery =>
-                    <tr>
-                        <td>{brewery.name}</td>
-                        <td>{brewery.country}</td>
-                        <td>
-                            {/* Wenn die website_url vorhanden ist, dann Link anzeigen */}
-                            {brewery.website_url ? (
-                                <a
-                                    href={brewery.website_url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    {brewery.website_url}
-                                </a>
-                            ) : (
-                                "No website available"
-                            )}
-                        </td>
-                        <td>{brewery.brewery_type}</td>
-                    </tr>
-                )
-                }
-                </tbody>
-            </table>
+        <div className="container mt-4">
+            <div className="card shadow-sm">
+                <div className="card-body p-0">
+                    <div
+                        className="table-responsive"
+                        style={{ maxHeight: '500px', overflowY: 'auto' }}
+                    >
+                        <table className="table table-sm table-striped table-hover mb-0">
+                            <thead className="table-light sticky-top">
+                            <tr>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>Website</th>
+                                <th>Type</th>
+                                <th>Map</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {breweries.map(brewery => (
+                                <tr key={brewery.id}>
+                                    <td>{brewery.name}</td>
+                                    <td>{brewery.country}</td>
+                                    <td>
+                                        {brewery.website_url ? (
+                                            <a
+                                                href={brewery.website_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Visit site
+                                            </a>
+                                        ) : (
+                                            <span className="text-muted">No website</span>
+                                        )}
+                                    </td>
+                                    <td>{brewery.brewery_type}</td>
+                                    <td>
+                                        {brewery.longitude != null && brewery.latitude != null ? (
+                                            <button
+                                                onClick={() => {
+                                                    setLatitude(brewery.latitude);
+                                                    setLongitude(brewery.longitude);
+                                                    setZoom(15);
+                                                }}
+                                                className="btn btn-outline-dark btn-sm"
+                                            >
+                                                Show on map
+                                            </button>
+                                        ) : (
+                                            <span className="text-muted">Unavailable</span>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     )
 }

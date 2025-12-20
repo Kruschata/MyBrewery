@@ -1,12 +1,15 @@
 import {useState} from "react";
 
-const BreweryFilter = ({setFilter, setRandomTrigger}) => {
+const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongitude,setZoom}) => {
 
     const [input, setInput] = useState('');
 
     const resetFilter = () => {
         setFilter("");
         setRandomTrigger(0);
+        setLongitude(1);
+        setLatitude(1);
+        setZoom(1);
     }
 
     const handleFilter = () => {
@@ -38,4 +41,4 @@ const BreweryFilter = ({setFilter, setRandomTrigger}) => {
         </div>
     )
 }
-export default BreweryFilter;
+export default BreweryFilterAndReset;
