@@ -1,9 +1,10 @@
 import BreweryList from "./BreweryList";
 import BreweryFilterAndReset from "./BreweryFilterAndReset";
-import {useState} from "react";
+import React, {useState} from "react";
 import BreweryRandom from "./BreweryRandom";
 import NavigationBar from "./NavigationBar";
 import BreweryMap from "./BreweryMap";
+import BreweryFavorites from "./BreweryFavorites";
 
 const BreweryApp = () => {
     const [filter, setFilter] = useState('');
@@ -12,6 +13,7 @@ const BreweryApp = () => {
     const [latitude, setLatitude] = useState(1);
     const [longitude, setLongitude] = useState(1);
     const [zoom, setZoom] = useState(2);
+    const [favorites, setFavorites] = useState([]);
 
     const handleRandomClick = () => {
         setRandomTrigger(prev => prev + 1);
@@ -19,6 +21,35 @@ const BreweryApp = () => {
 
     const handleBreweryDataFetched = (data) => {
         setBreweryData(data);
+    };
+
+    const toggleFavorites = (brewery) => {
+        setFavorites(prevFavorites => {
+                if (prevFavorites.some(fav => fav.id === brewery.id)) {
+                    return prevFavorites.filter(fav => fav.id !== brewery.id);
+                } else {
+                    return [...prevFavorites, brewery];
+                }
+        });
+    };
+
+    /*
+    Beispiel: .filter Methode
+    const numbers = [1, 2, 3, 4, 5];
+    const even = numbers.filter(num => num % 2 === 0);
+    console.log(even); // [2, 4]
+    liefert gefiltertes Array zurück
+
+    Beispiel: .some Methode
+    const numbers = [1, 3, 5, 7];
+    numbers.some(n => n > 4);
+    liefert true weil 5 und 7 größer als 4 sind
+     */
+
+    const showOnMap = (lat, lng, zoomLevel) => {
+        setLatitude(lat);
+        setLongitude(lng);
+        setZoom(zoomLevel);
     };
 
     return (
@@ -35,7 +66,7 @@ const BreweryApp = () => {
                 />
 
                 <div className="mt-3">
-                    <BreweryRandom setRandom={handleRandomClick} />
+                    <BreweryRandom setRandom={handleRandomClick}/>
                 </div>
 
                 {/* row... macht Reihe */}
@@ -47,20 +78,30 @@ const BreweryApp = () => {
                             filter={filter}
                             randomTrigger={randomTrigger}
                             onBreweryDataFetched={handleBreweryDataFetched}
-                            setLatitude={setLatitude}
-                            setLongitude={setLongitude}
-                            setZoom={setZoom}
+                            setFavorites={setFavorites}
+                            toggleFavorites={toggleFavorites}
+                            showOnMap={showOnMap}
+                            favorites={favorites}
                         />
                     </div>
 
                     <div className="col-lg-4">
-                        <BreweryMap
-                            breweries={breweries}
-                            latitude={latitude}
-                            longitude={longitude}
-                            zoom={zoom}
-                        />
+                        <BreweryMap breweries={breweries}
+                                    latitude={latitude}
+                                    longitude={longitude}
+                                    zoom={zoom}/>
+
                     </div>
+
+
+                </div>
+                <p>Info: Markers are inacurrate when zoomed out. </p>
+                <div className="row g-1">
+                    <BreweryFavorites
+                        favorites ={favorites}
+                        toggleFavorites={toggleFavorites}
+                        showOnMap={showOnMap}
+                    />
                 </div>
             </div>
         </div>

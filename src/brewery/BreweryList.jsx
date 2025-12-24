@@ -1,18 +1,12 @@
 import {useEffect, useState} from "react";
 
-const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, setLatitude, setLongitude, setZoom}) => {
+const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavorites,showOnMap,favorites }) => {
     const [breweries, setBreweries] = useState([]);
     const [error, setError] = useState("");
 
 
     useEffect(() => {
         if (randomTrigger > 0) {
-            breweries.map (brewery => {
-                if (brewery.latitude !== null && brewery.longitude !== null)
-                setLatitude(brewery.latitude);
-                setLongitude(brewery.longitude);
-                setZoom(15);
-            })
 
             fetch("https://api.openbrewerydb.org/v1/breweries/random") //returns a Promise
                 .then((response) => {
@@ -75,6 +69,8 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, setLatitude,
 
 
 
+
+
     return (
 
         <div className="container mt-4">
@@ -92,6 +88,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, setLatitude,
                                 <th>Website</th>
                                 <th>Type</th>
                                 <th>Map</th>
+                                <th>Favorize</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -116,18 +113,22 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, setLatitude,
                                     <td>
                                         {brewery.longitude != null && brewery.latitude != null ? (
                                             <button
-                                                onClick={() => {
-                                                    setLatitude(brewery.latitude);
-                                                    setLongitude(brewery.longitude);
-                                                    setZoom(15);
-                                                }}
+                                                onClick={() => showOnMap(brewery.latitude, brewery.longitude, 15)}
                                                 className="btn btn-outline-dark btn-sm"
                                             >
                                                 Show on map
                                             </button>
                                         ) : (
-                                            <span className="text-muted">Unavailable</span>
+                                            <span className="text-muted" >Unavailable</span>
+
                                         )}
+                                    </td>
+                                    <td>
+                                        <input
+                                            type={"checkbox"}
+                                            checked={favorites.some(fav => fav.id === brewery.id)}
+                                            onChange={() => toggleFavorites(brewery)}
+                                        />
                                     </td>
                                 </tr>
                             ))}

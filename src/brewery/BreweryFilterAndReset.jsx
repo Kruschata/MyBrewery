@@ -6,6 +6,7 @@ const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongi
 
     const resetFilter = () => {
         setFilter("");
+        setInput('');
         setRandomTrigger(0);
         setLongitude(1);
         setLatitude(1);
@@ -28,10 +29,10 @@ const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongi
         <div>
             <input
                 type="text"
-                placeholder="Filter..."
+                placeholder="Filter by country..."
                 value={input}
                 onChange={e => setInput(e.target.value)}
-                onKeyDown={handleKeyDown} // Event Listener für die "Enter"-Taste
+                onKeyDown={handleKeyDown}
             />
             <l>    </l>
             <button onClick={handleFilter} className="btn btn-outline-dark">Search</button>
