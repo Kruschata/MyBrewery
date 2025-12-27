@@ -6,6 +6,7 @@ const BreweryFavorites = ({favorites, showOnMap, toggleFavorites}) => {
             className="table-responsive"
             style={{ maxHeight: '500px', overflowY: 'auto' }}
         >
+
             <table className="table table-sm table-striped table-hover mb-0">
                 <thead className="table-light sticky-top">
                 <tr>

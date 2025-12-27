@@ -70,7 +70,7 @@ const BreweryApp = () => {
                 </div>
 
                 {/* row... macht Reihe */}
-                <div className="row g-1">
+                <div className="row g-2">
 
                     {/* col.. Spalte    lg...  Breite */}
                     <div className="col-lg-8">
@@ -89,7 +89,9 @@ const BreweryApp = () => {
                         <BreweryMap breweries={breweries}
                                     latitude={latitude}
                                     longitude={longitude}
-                                    zoom={zoom}/>
+                                    zoom={zoom}
+                                    favorites={favorites}
+                        />
 
                     </div>
 
@@ -97,6 +99,7 @@ const BreweryApp = () => {
                 </div>
                 <p>Info: Markers are inacurrate when zoomed out. </p>
                 <div className="row g-1">
+                    <h1>Favorites</h1>
                     <BreweryFavorites
                         favorites ={favorites}
                         toggleFavorites={toggleFavorites}
