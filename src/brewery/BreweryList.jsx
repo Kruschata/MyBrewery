@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavorites,showOnMap,favorites }) => {
+const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavorites,showOnMap,favorites,page }) => {
     const [breweries, setBreweries] = useState([]);
     const [error, setError] = useState("");
 
@@ -28,7 +28,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
 
         } else if (filter && filter.length > 2) {
             //https://api.openbrewerydb.org/v1/breweries?by_country=" +filter + "&by_type=micro&by_" with & you can add multiple filters
-            fetch("https://api.openbrewerydb.org/v1/breweries?by_country=" + filter) //returns a Promise
+            fetch("https://api.openbrewerydb.org/v1/breweries?by_country=" + filter + "&page=" + page) //returns a Promise
                 .then((response) => {
                     if (response.ok) {
                         return response.json();
@@ -46,7 +46,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                 })
 
         } else {
-            fetch("https://api.openbrewerydb.org/v1/breweries") //returns a Promise
+            fetch("https://api.openbrewerydb.org/v1/breweries?page=" + page) //returns a Promise
                 .then((response) => {
                     if (response.ok) {
                         return response.json();
@@ -65,7 +65,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                     console.log(error);
                 })
         }
-    }, [filter, randomTrigger]);
+    }, [filter, randomTrigger,page]);
 
 
 
@@ -137,6 +137,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                     </div>
                 </div>
             </div>
+            <p>Current page: {page}</p>
         </div>
 
 

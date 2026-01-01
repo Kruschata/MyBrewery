@@ -62,7 +62,7 @@ const BreweryMap = ({ breweries, latitude,longitude,zoom,favorites}) => {
             <div
                 id="map"
                 className="border rounded shadow-sm"
-                style={{ height: '500px', width: '600px'}}
+                style={{ height: '500px', width: '800px'}}
             ></div>
         </div>
     );
