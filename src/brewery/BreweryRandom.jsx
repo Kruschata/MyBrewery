@@ -6,7 +6,7 @@ const BreweryRandom = ({setRandom}) =>{
            <l>Don't know what to drink? Use our Randomizer!     </l>
             <button  onClick={() => {
                 setRandom();
-            }} class="btn btn-outline-dark">I am thirsty!</button>
+            }} className="btn btn-outline-dark">I am thirsty!</button>
         </div>
 
     )

@@ -38,7 +38,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                 }) //Promise -> json Data
                 .then((data) => {
                     setBreweries(data);
-                     onBreweryDataFetched(data);
+                    onBreweryDataFetched(data);
                 })
                 .catch(error => {
                     setError(error);
@@ -74,13 +74,13 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
     return (
 
         <div className="container mt-4">
-            <div className="card shadow-sm">
+            <div className="card">
                 <div className="card-body p-0">
                     <div
                         className="table-responsive"
                         style={{ maxHeight: '500px', overflowY: 'auto' }}
                     >
-                        <table className="table table-sm table-striped table-hover mb-0">
+                        <table className="table table-sm table-striped table-hover">
                             <thead className="table-light sticky-top">
                             <tr>
                                 <th>Name</th>

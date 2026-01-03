@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongitude,setZoom,setPage}) => {
+const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongitude,setZoom,setPage,setInputField}) => {
 
     const [input, setInput] = useState('');
 
@@ -12,7 +12,7 @@ const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongi
         setLatitude(1);
         setZoom(1);
         setPage(1);
-
+        setInputField(1);
     }
 
     const handleFilter = () => {

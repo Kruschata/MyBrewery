@@ -16,6 +16,7 @@ const BreweryApp = () => {
     const [zoom, setZoom] = useState(2);
     const [favorites, setFavorites] = useState([]);
     const [page, setPage] = useState(1);
+    const [inputFieldPage, setInputFieldPage] = useState(1);
 
     const handleRandomClick = () => {
         setRandomTrigger(prev => prev + 1);
@@ -56,16 +57,19 @@ const BreweryApp = () => {
 
 
     return (
-        <div className="bg-light min-vh-100 w-100">
+        <div>
             <NavigationBar />
 
 
-            <div className="container-fluid px-4 py-4">
+            {/*px, py Abstand von Rand */}
+            <div className=" px-4 py-4">
                 {/* Filter + Random */}
-                <div className="card shadow-sm mb-4">
+                {/* card macht Rand
+                    mb4 macht Abstand*/}
+                <div className="card  mb-4">
                     <div className="card-body">
-                        <div className="row g-3 align-items-end">
-                            <div className="col-12 col-xl-8">
+                        <div className="row">
+                            <div className="col">
                                 <BreweryFilterAndReset
                                     setFilter={setFilter}
                                     setRandomTrigger={setRandomTrigger}
@@ -73,23 +77,38 @@ const BreweryApp = () => {
                                     setLongitude={setLongitude}
                                     setZoom={setZoom}
                                     setPage={setPage}
+                                    setInputField={setInputFieldPage}
                                 />
                             </div>
-                            <div className="col-lg-4 text-lg-end">
+                            {/* text-lg-end ... Austrichtung rechts */}
+                            <div className="col text-end">
                                 <BreweryRandom setRandom={handleRandomClick} />
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-                <div className="row g-4 align-items-stretch">
+                {/* für gleiche Höhe
+                ROW (höchste Spalte bestimmt die Höhe)
+                ┌───────────────────────────────┐
+                │  COL (d-flex)    COL (d-flex) │
+                │  ┌───────────┐  ┌───────────┐ │
+                │  │  CARD     │  │  CARD     │ │
+                │  │  h-100    │  │  h-100    │ │
+                │  └───────────┘  └───────────┘ │
+                └───────────────────────────────┘
+                */}
+                <div className="row align-items-stretch">
                     {/* Brewery List */}
-                    <div className="col-12 col-xl-7">
-                        <div className="card shadow-sm h-100">
+                    {/* col-7 ... 7 ist wie Breit geht von 1-12
+                        d-flex damit Inhalt auch Flexbox nutzt
+                     */}
+                    <div className="col-7 d-flex">
+                        <div className="card h-100 w-100">
                             <div className="card-header bg-white fw-semibold">
                                 Breweries
                             </div>
+                            {/* p-0 ... Padding=0 kein Innenabstand */}
                             <div className="card-body p-0">
                                 <BreweryList
                                     filter={filter}
@@ -102,19 +121,23 @@ const BreweryApp = () => {
                                     page={page}
                                 />
                             </div>
-                            <div className="card-footer bg-white">
+
+                            <div>
                                 <PageSelector
                                     setPage={setPage}
                                     page={page}
                                     breweries={breweries}
+                                    inputFieldPage={inputFieldPage}
+                                    setInputFieldPage={setInputFieldPage}
                                 />
+                                <br/>
                             </div>
                         </div>
                     </div>
 
                     {/* Map */}
-                    <div className="col-12 col-xl-5">
-                        <div className="card shadow-sm h-100">
+                    <div className="col-5 d-flex">
+                        <div className="card h-100 w-100">
                             <div className="card-header bg-white fw-semibold">
                                 Map
                             </div>
@@ -126,6 +149,7 @@ const BreweryApp = () => {
                                     zoom={zoom}
                                     favorites={favorites}
                                 />
+
                             </div>
                             <div className="card-footer text-center text-muted small">
                                 Markers are inaccurate when zoomed out
