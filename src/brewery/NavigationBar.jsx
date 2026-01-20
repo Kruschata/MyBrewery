@@ -1,24 +1,28 @@
+import { Link, NavLink } from "react-router-dom";
 import logo from "../brewery/pictures/logo.png";
 
 const NavigationBar = () => {
-/*  https://getbootstrap.com/docs/5.3/components/navbar */
     return (
-        <nav className="navbar bg-warning bg-opacity-25" >
+        <nav className="navbar bg-warning bg-opacity-25">
             <div className="container">
-                <a className="navbar-brand">
-                    <img src={logo} alt="Logo" style={{maxHeight: "100px"}}/>
-                </a>
+                <NavLink to="/" className="navbar-brand">
+                    <img src={logo} alt="Logo" style={{ maxHeight: "100px" }} />
+                </NavLink>
 
-               <span className="display-6 fw-bold text-center">MyBrewery</span>
+                <span className="display-6 fw-bold text-center">MyBrewery</span>
 
                 <div>
-                    <button className="btn btn-outline-dark">Home</button>
-                    <l>     </l>
-                    <button className="btn btn-outline-dark">About</button>
+                    <NavLink to="/" className="btn btn-outline-dark me-2">
+                        Home
+                    </NavLink>
+
+                    <NavLink to="/about" className="btn btn-outline-dark">
+                        About
+                    </NavLink>
                 </div>
             </div>
         </nav>
-    )
-}
+    );
+};
 
 export default NavigationBar;

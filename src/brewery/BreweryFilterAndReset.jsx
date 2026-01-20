@@ -42,7 +42,6 @@ const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongi
             <button onClick={handleFilter} className="btn btn-outline-dark">Search</button>
             <l>    </l>
             <button onClick={resetFilter} className={"btn btn-outline-danger"}>Reset</button>
-
         </div>
     )
 }
