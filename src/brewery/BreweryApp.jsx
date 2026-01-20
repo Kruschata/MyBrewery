@@ -1,9 +1,4 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavigationBar from "./NavigationBar";
-import About from "./About";
-
-// deine bestehenden Imports
+import React, {useState} from "react";
 import BreweryList from "./BreweryList";
 import BreweryFilterAndReset from "./BreweryFilterAndReset";
 import BreweryRandom from "./BreweryRandom";
@@ -41,100 +36,89 @@ const BreweryApp = () => {
     };
 
     return (
-        <BrowserRouter>
-            <NavigationBar />
-
-            <Routes>
-                {/* BREWERY LIST */}
-                <Route
-                    path="/"
-                    element={
-                        <div className="px-4 py-4">
-                            <div className="card mb-4">
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col">
-                                            <BreweryFilterAndReset
-                                                setFilter={setFilter}
-                                                setRandomTrigger={setRandomTrigger}
-                                                setLatitude={setLatitude}
-                                                setLongitude={setLongitude}
-                                                setZoom={setZoom}
-                                                setPage={setPage}
-                                                setInputField={setInputFieldPage}
-                                            />
-                                        </div>
-                                        <div className="col text-end">
-                                            <BreweryRandom setRandom={handleRandomClick} />
-                                        </div>
-                                    </div>
-                                </div>
+        <div>
+            <div className="px-4 py-4">
+                <div className="card mb-4">
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col">
+                                <BreweryFilterAndReset
+                                    setFilter={setFilter}
+                                    setRandomTrigger={setRandomTrigger}
+                                    setLatitude={setLatitude}
+                                    setLongitude={setLongitude}
+                                    setZoom={setZoom}
+                                    setPage={setPage}
+                                    setInputField={setInputFieldPage}
+                                />
                             </div>
-
-                            <div className="row align-items-stretch">
-                                <div className="col-7 d-flex">
-                                    <div className="card h-100 w-100">
-                                        <div className="card-header bg-white fw-semibold">
-                                            Breweries
-                                        </div>
-                                        <div className="card-body p-0">
-                                            <BreweryList
-                                                filter={filter}
-                                                randomTrigger={randomTrigger}
-                                                onBreweryDataFetched={handleBreweryDataFetched}
-                                                toggleFavorites={toggleFavorites}
-                                                favorites={favorites}
-                                                showOnMap={showOnMap}
-                                                page={page}
-                                            />
-                                        </div>
-                                        <PageSelector
-                                            setPage={setPage}
-                                            page={page}
-                                            breweries={breweries}
-                                            inputFieldPage={inputFieldPage}
-                                            setInputFieldPage={setInputFieldPage}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="col-5 d-flex">
-                                    <div className="card h-100 w-100">
-                                        <div className="card-header bg-white fw-semibold">
-                                            Map
-                                        </div>
-                                        <div className="card-body p-2">
-                                            <BreweryMap
-                                                breweries={breweries}
-                                                latitude={latitude}
-                                                longitude={longitude}
-                                                zoom={zoom}
-                                                favorites={favorites}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="card mt-5">
-                                <div className="card-header fw-bold">Favorites</div>
-                                <div className="card-body">
-                                    <BreweryFavorites
-                                        favorites={favorites}
-                                        toggleFavorites={toggleFavorites}
-                                        showOnMap={showOnMap}
-                                    />
-                                </div>
+                            <div className="col text-end">
+                                <BreweryRandom setRandom={handleRandomClick}/>
                             </div>
                         </div>
-                    }
-                />
+                    </div>
+                </div>
 
-                {/* ABOUT */}
-                <Route path="/about" element={<About />} />
-            </Routes>
-        </BrowserRouter>
-    );
+                <div className="row align-items-stretch">
+                    <div className="col-7 d-flex">
+                        <div className="card h-100 w-100">
+                            <div className="card-header bg-white fw-semibold">
+                                Breweries
+                            </div>
+                            <div className="card-body p-0">
+                                <BreweryList
+                                    filter={filter}
+                                    randomTrigger={randomTrigger}
+                                    onBreweryDataFetched={handleBreweryDataFetched}
+                                    toggleFavorites={toggleFavorites}
+                                    favorites={favorites}
+                                    showOnMap={showOnMap}
+                                    page={page}
+                                />
+                            </div>
+                            <PageSelector
+                                setPage={setPage}
+                                page={page}
+                                breweries={breweries}
+                                inputFieldPage={inputFieldPage}
+                                setInputFieldPage={setInputFieldPage}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="col-5 d-flex">
+                        <div className="card h-100 w-100">
+                            <div className="card-header bg-white fw-semibold">
+                                Map
+                            </div>
+                            <div className="card-body p-2">
+                                <BreweryMap
+                                    breweries={breweries}
+                                    latitude={latitude}
+                                    longitude={longitude}
+                                    zoom={zoom}
+                                    favorites={favorites}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="card mt-5">
+                    <div className="card-header fw-bold">Favorites</div>
+                    <div className="card-body">
+                        <BreweryFavorites
+                            favorites={favorites}
+                            toggleFavorites={toggleFavorites}
+                            showOnMap={showOnMap}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    )
+        ;
 };
 
 export default BreweryApp;

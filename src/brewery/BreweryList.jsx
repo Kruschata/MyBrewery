@@ -1,4 +1,5 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavorites,showOnMap,favorites,page }) => {
     const [breweries, setBreweries] = useState([]);
@@ -94,7 +95,11 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                             <tbody>
                             {breweries.map(brewery => (
                                 <tr key={brewery.id}>
-                                    <td>{brewery.name}</td>
+                                    <td>
+                                        <Link to={`/details/${brewery.id}`} className="text-decoration-none">
+                                            <p>{brewery.name}</p>
+                                        </Link>
+                                    </td>
                                     <td>{brewery.country}</td>
                                     <td>
                                         {brewery.website_url ? (
@@ -123,6 +128,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
 
                                         )}
                                     </td>
+
                                     <td>
                                         <input
                                             type={"checkbox"}
