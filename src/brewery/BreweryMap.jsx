@@ -58,6 +58,9 @@ const BreweryMap = ({ breweries, latitude,longitude,zoom,favorites}) => {
     }, [breweries,latitude,longitude,zoom,favorites]);
 
     return (
+
+
+
         <div className="container mt-3">
             <div
                 id="map"

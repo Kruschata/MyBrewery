@@ -84,6 +84,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                         <table className="table table-sm table-striped table-hover">
                             <thead className="table-light sticky-top">
                             <tr>
+                                <th>Details</th>
                                 <th>Name</th>
                                 <th>Country</th>
                                 <th>Website</th>
@@ -94,11 +95,14 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                             </thead>
                             <tbody>
                             {breweries.map(brewery => (
-                                <tr key={brewery.id}>
+                                <tr  className="text-center px-1" key={brewery.id}>
                                     <td>
                                         <Link to={`/details/${brewery.id}`} className="text-decoration-none">
-                                            <p>{brewery.name}</p>
+                                            <p>Info</p>
                                         </Link>
+                                    </td>
+                                    <td>
+                                        <p>{brewery.name}</p>
                                     </td>
                                     <td>{brewery.country}</td>
                                     <td>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import BreweryList from "./BreweryList";
 import BreweryFilterAndReset from "./BreweryFilterAndReset";
 import BreweryRandom from "./BreweryRandom";
@@ -12,7 +12,7 @@ const BreweryApp = () => {
     const [breweries, setBreweryData] = useState([]);
     const [latitude, setLatitude] = useState(1);
     const [longitude, setLongitude] = useState(1);
-    const [zoom, setZoom] = useState(2);
+    const [zoom, setZoom] = useState(1);
     const [favorites, setFavorites] = useState([]);
     const [page, setPage] = useState(1);
     const [inputFieldPage, setInputFieldPage] = useState(1);
@@ -21,6 +21,11 @@ const BreweryApp = () => {
 
     const handleBreweryDataFetched = data => setBreweryData(data);
 
+    useEffect(() => {
+        const saved = localStorage.getItem("favorites");
+        if (saved) setFavorites(JSON.parse(saved));
+    }, []);
+
     const toggleFavorites = brewery => {
         setFavorites(prev =>
             prev.some(f => f.id === brewery.id)
@@ -28,6 +33,7 @@ const BreweryApp = () => {
                 : [...prev, brewery]
         );
     };
+
 
     const showOnMap = (lat, lng, zoomLevel) => {
         setLatitude(lat);

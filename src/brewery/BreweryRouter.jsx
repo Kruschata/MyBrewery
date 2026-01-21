@@ -6,6 +6,8 @@ import NavigationBar from "./NavigationBar";
 import React from "react";
 
 const BreweryRouter = () => {
+
+
     return (
         <BrowserRouter>
             <NavigationBar/>

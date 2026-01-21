@@ -1,4 +1,3 @@
-import {useState} from "react";
 
 const PageSelector = ({setPage,page,breweries,inputFieldPage,setInputFieldPage}) => {
 
@@ -44,7 +43,7 @@ const PageSelector = ({setPage,page,breweries,inputFieldPage,setInputFieldPage})
                 >
                     Page Back
                 </button>
-                <l>    </l>
+                <l></l>
                 <input
                     type="number"
                     min={1}
@@ -55,7 +54,7 @@ const PageSelector = ({setPage,page,breweries,inputFieldPage,setInputFieldPage})
                     onChange={e => setInputFieldPage(Number(e.target.value))}
                     onKeyDown={handleKeyDown}
                 />
-                <l>    </l>
+                <l></l>
                 <button
                     className="btn btn-outline-dark"
                     onClick={pageFront}
@@ -74,8 +73,9 @@ const PageSelector = ({setPage,page,breweries,inputFieldPage,setInputFieldPage})
                 >
                     Enter
                 </button>
-            </div>
 
+            </div>
+            <br/>
         </div>
 
 
