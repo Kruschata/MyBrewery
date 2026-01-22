@@ -9,7 +9,12 @@ const NavigationBar = () => {
                     <img src={logo} alt="Logo" style={{ maxHeight: "100px" }} className="text-start" />
                 </NavLink>
 
-                <span className="display-6 fw-bold text-center">MyBrewery</span>
+
+                <div className="mt-3">
+                    <span className="display-6 fw-bold">MyBrewery</span>
+                    <p>By Lukas Krusch</p>
+                </div>
+
 
                 <div>
                     <NavLink to="/" className="btn btn-outline-dark me-2">

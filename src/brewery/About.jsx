@@ -6,7 +6,7 @@ const About = () => {
         <div>
             <div>
                 <h1>Brewery API by Lukas Krusch</h1>
-                <p>Diese Website wurde im Rahmen des Software Engineering Unterichtes gemacht.</p>
+                <p>Diese Website wurde im Rahmen des Software Engineering Unterrichtes gemacht.</p>
                 <h2>Funktionen der MyBrewery:</h2>
                 <ul>
                     <li>Brauereien auflisten</li>
@@ -16,14 +16,14 @@ const About = () => {
                         Favorites-Liste
                         gespeichert
                     </li>
-                    <li>Wenn man mal abenteuerisch ist, kann man durch den Random-Button eine zufällige Brauerei
+                    <li>Wenn man mal sich mal abenteuerlich fühlt, kann man durch den Random-Button eine zufällige Brauerei
                         finden
                     </li>
-                    <li>Genießt Alkohol mit bedacht!</li>
+                    <li>Genießt Alkohol mit Bedacht!</li>
                 </ul>
             </div>
-            <h1>Bekannt Bugs</h1>
-            <p>Es sind einige Bugs bekannt, hauptsächlich durch fehlerhafte Datensätze von der Brewery API</p>
+            <h2>Bekannt Bugs</h2>
+            <p>Es sind einige Bugs bekannt, hauptsächlich durch fehlerhafte Datensätze der Brewery API</p>
             <ul>
                 <li>Germany ist in Meer, dies entspricht nicht der Realität</li>
             </ul>

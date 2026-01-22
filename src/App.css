@@ -44,3 +44,7 @@
 .bg-navbar {
   background-color:#FCEEB5 ;
 }
+
+.navbar{
+  min-height: 10vh;
+}
