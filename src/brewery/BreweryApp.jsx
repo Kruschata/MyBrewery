@@ -6,14 +6,13 @@ import BreweryMap from "./BreweryMap";
 import BreweryFavorites from "./BreweryFavorites";
 import PageSelector from "./PageSelector";
 
-const BreweryApp = () => {
+const BreweryApp = ({favorites,setFavorites}) => {
     const [filter, setFilter] = useState("");
     const [randomTrigger, setRandomTrigger] = useState(0);
     const [breweries, setBreweryData] = useState([]);
     const [latitude, setLatitude] = useState(1);
     const [longitude, setLongitude] = useState(1);
     const [zoom, setZoom] = useState(1);
-    const [favorites, setFavorites] = useState([]);
     const [page, setPage] = useState(1);
     const [inputFieldPage, setInputFieldPage] = useState(1);
 
@@ -43,10 +42,14 @@ const BreweryApp = () => {
 
     return (
         <div>
-            <div className="px-4 py-4">
+            {/* px.. Abstand von Rand Links recht py... Abstand von Rand Oben unten */}
+            <div className="px-2 py-4">
+                {/*mb.. margin bottom, Abstand nach unten */}
+                {/* Block 1 Filtern, Reset und Random*/}
                 <div className="card mb-4">
                     <div className="card-body">
                         <div className="row">
+
                             <div className="col">
                                 <BreweryFilterAndReset
                                     setFilter={setFilter}
@@ -58,6 +61,7 @@ const BreweryApp = () => {
                                     setInputField={setInputFieldPage}
                                 />
                             </div>
+                            {/* text-end... damit ganz seitlich */}
                             <div className="col text-end">
                                 <BreweryRandom setRandom={handleRandomClick}/>
                             </div>
@@ -65,10 +69,13 @@ const BreweryApp = () => {
                     </div>
                 </div>
 
+                {/* Brewery List, PageSelector */}
+
                 <div className="row align-items-stretch">
+                    {/* Aufteilung der Reihe mit col Breweries und Map,  */}
                     <div className="col-7 d-flex">
                         <div className="card h-100 w-100">
-                            <div className="card-header bg-white fw-semibold">
+                            <div className="card-header fw-bold">
                                 Breweries
                             </div>
                             <div className="card-body p-0">

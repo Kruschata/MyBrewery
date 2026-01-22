@@ -1,3 +1,5 @@
+import {NavLink} from "react-router-dom";
+
 const About = () => {
 
 
@@ -18,7 +20,9 @@ const About = () => {
                     <p>Genießt Alkohol mit bedacht!</p>
                 </ul>
             </div>
-
+            <NavLink to="/" className="btn btn-outline-dark me-2">
+                Home
+            </NavLink>
         </div>
     )
 }

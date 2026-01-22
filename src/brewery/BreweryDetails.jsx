@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -91,6 +91,10 @@ const BreweryDetails = () => {
                         )}
                     </div>
                 </div>
+
+                <NavLink to="/" className="btn btn-outline-dark me-2">
+                    Home
+                </NavLink>
 
             </div>
         </div>

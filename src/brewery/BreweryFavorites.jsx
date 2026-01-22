@@ -1,4 +1,5 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
+import {Link, NavLink} from "react-router-dom";
 
 const BreweryFavorites = ({favorites, showOnMap, toggleFavorites}) => {
 
@@ -12,6 +13,7 @@ const BreweryFavorites = ({favorites, showOnMap, toggleFavorites}) => {
             <table className="table table-sm table-striped table-hover mb-0">
                 <thead className="table-light sticky-top">
                 <tr>
+                    <th>Details</th>
                     <th>Name</th>
                     <th>Country</th>
                     <th>Website</th>
@@ -23,6 +25,11 @@ const BreweryFavorites = ({favorites, showOnMap, toggleFavorites}) => {
                 <tbody>
                 {favorites.map(brewery => (
                     <tr key={brewery.id}>
+                        <td>
+                            <Link to={`/details/${brewery.id}`} className="text-decoration-none">
+                                <p>Info</p>
+                            </Link>
+                        </td>
                         <td>{brewery.name}</td>
                         <td>{brewery.country}</td>
                         <td>
@@ -42,13 +49,13 @@ const BreweryFavorites = ({favorites, showOnMap, toggleFavorites}) => {
                         <td>
                             {brewery.longitude != null && brewery.latitude != null ? (
                                 <button
-                                    onClick={() => showOnMap(brewery.latitude,brewery.longitude,15)}
+                                    onClick={() => showOnMap(brewery.latitude, brewery.longitude, 15)}
                                     className="btn btn-outline-dark btn-sm"
                                 >
                                     Show on map
                                 </button>
                             ) : (
-                                <span className="text-muted" >Unavailable</span>
+                                <span className="text-muted">Unavailable</span>
 
                             )}
                         </td>
