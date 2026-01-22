@@ -1,8 +1,6 @@
 
 const PageSelector = ({setPage,page,breweries,inputFieldPage,setInputFieldPage}) => {
 
-
-
     const handlePageSelection = () => {
         setPage(inputFieldPage);
     }
@@ -37,13 +35,12 @@ const PageSelector = ({setPage,page,breweries,inputFieldPage,setInputFieldPage})
         <div>
             <div>
                 <button
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-dark me-2"
                     onClick={pageBack}
                     disabled={page <= 1}
                 >
                     Page Back
                 </button>
-                <l>      </l>
                 <input
                     type="number"
                     min={1}
@@ -53,10 +50,10 @@ const PageSelector = ({setPage,page,breweries,inputFieldPage,setInputFieldPage})
                     disabled={breweries.length === 1}
                     onChange={e => setInputFieldPage(Number(e.target.value))}
                     onKeyDown={handleKeyDown}
+                    className="me-2"
                 />
-                <l>      </l>
                 <button
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-dark mt-0"
                     onClick={pageFront}
                     disabled={breweries.length < 50}
                 >
@@ -69,11 +66,9 @@ const PageSelector = ({setPage,page,breweries,inputFieldPage,setInputFieldPage})
                 <button
                     className="btn btn-outline-dark w-50"
                     onClick={handlePageSelection}
-                    Enter
                 >
                     Enter
                 </button>
-
             </div>
             <br/>
         </div>

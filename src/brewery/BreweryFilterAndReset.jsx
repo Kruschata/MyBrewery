@@ -2,7 +2,7 @@ import {useState} from "react";
 
 const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongitude,setZoom,setPage,setInputField}) => {
 
-    const [input, setInput] = useState('');
+    const [inputCountry, setInput] = useState('');
 
     const resetFilter = () => {
         setFilter("");
@@ -16,7 +16,7 @@ const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongi
     }
 
     const handleFilter = () => {
-        setFilter(input);
+        setFilter(inputCountry);
         setRandomTrigger(0);
         setPage(1);
 
@@ -34,14 +34,14 @@ const BreweryFilterAndReset = ({setFilter, setRandomTrigger,setLatitude,setLongi
             <input
                 type="text"
                 placeholder="Filter by country..."
-                value={input}
+                value={inputCountry}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
+                className="me-2"
             />
-            <l>    </l>
-            <button onClick={handleFilter} className="btn btn-outline-dark">Search</button>
-            <l>    </l>
-            <button onClick={resetFilter} className="btn btn-outline-danger">Reset</button>
+            <button onClick={handleFilter} className="btn btn-outline-dark me-2">Search</button>
+
+            <button onClick={resetFilter} className="btn btn-outline-danger me-2">Reset</button>
         </div>
     )
 }

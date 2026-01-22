@@ -50,9 +50,9 @@ const BreweryFavorites = ({favorites, showOnMap, toggleFavorites}) => {
                             {brewery.longitude != null && brewery.latitude != null ? (
                                 <button
                                     onClick={() => showOnMap(brewery.latitude, brewery.longitude, 15)}
-                                    className="btn btn-outline-dark btn-sm"
+                                    className="btn btn-dark btn-sm fw-bold"
                                 >
-                                    Show on map
+                                    SHOW
                                 </button>
                             ) : (
                                 <span className="text-muted">Unavailable</span>
@@ -62,7 +62,7 @@ const BreweryFavorites = ({favorites, showOnMap, toggleFavorites}) => {
                         <td>
                             <button
                                 onClick={() => toggleFavorites(brewery)}
-                                className="btn btn-outline-dark btn-sm"
+                                className="btn btn-danger btn-sm fw-bold"
                             >
                                 Unfavorize
                             </button>

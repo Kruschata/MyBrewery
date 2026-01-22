@@ -15,16 +15,24 @@ const BreweryMap = ({ breweries, latitude,longitude,zoom,favorites}) => {
             }
         })
 
-    // Standardmarker Icon anlegen
-    const DefaultIcon = L.icon({
-        iconUrl: icon,
-        shadowUrl: iconShadow
-    });
+        {/* Hinzufügen des Standartmarkers */}
+        const DefaultIcon = L.icon({
+            iconUrl: icon,
+            shadowUrl: iconShadow,
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+        });
 
-    //es gibt eine eigene URL für Farben
-    const redIcon = new L.Icon({
-            iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-            shadowUrl: iconShadow
+        {/* Hinzufügen des Favoritemarkers, mit Github Link kann man auf andere färbige Markers zugreifen*/}
+        const redIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+            shadowUrl: iconShadow,
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
         });
 
 
@@ -60,14 +68,17 @@ const BreweryMap = ({ breweries, latitude,longitude,zoom,favorites}) => {
     return (
 
 
-
         <div className="container mt-3">
             <div
                 id="map"
-                className="border rounded shadow-sm"
-                style={{ height: '600px', width: '550px'}}
+                className="border rounded mx-auto"
+                style={{
+                    width: '100%',
+                    height: '600px'
+                }}
             ></div>
         </div>
+
     );
 };
 

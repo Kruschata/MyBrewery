@@ -74,15 +74,13 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
 
     return (
 
-        <div className="container mt-4">
+        <div className="container mt-3">
             <div className="card">
                 <div className="card-body p-0">
-                    <div
-                        className="table-responsive"
-                        style={{ maxHeight: '500px', overflowY: 'auto' }}
-                    >
+                    {/* table-responsive */}
+                    <div style={{ maxHeight: '450px', overflowY: 'auto' }}>
                         <table className="table table-sm table-striped table-hover">
-                            <thead className="table-light sticky-top">
+                            <thead className="sticky-top">
                             <tr>
                                 <th>Details</th>
                                 <th>Name</th>
@@ -95,7 +93,7 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                             </thead>
                             <tbody>
                             {breweries.map(brewery => (
-                                <tr  className="text-center px-1" key={brewery.id}>
+                                <tr key={brewery.id}>
                                     <td>
                                         <Link to={`/details/${brewery.id}`} className="text-decoration-none">
                                             <p>Info</p>
@@ -123,9 +121,9 @@ const BreweryList = ({filter, randomTrigger,  onBreweryDataFetched, toggleFavori
                                         {brewery.longitude != null && brewery.latitude != null ? (
                                             <button
                                                 onClick={() => showOnMap(brewery.latitude, brewery.longitude, 15)}
-                                                className="btn btn-outline-dark btn-sm"
+                                                className="btn btn-dark btn-sm fw-bold"
                                             >
-                                                Show on map
+                                                SHOW
                                             </button>
                                         ) : (
                                             <span className="text-muted" >Unavailable</span>

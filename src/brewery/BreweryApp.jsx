@@ -20,11 +20,6 @@ const BreweryApp = ({favorites,setFavorites}) => {
 
     const handleBreweryDataFetched = data => setBreweryData(data);
 
-    useEffect(() => {
-        const saved = localStorage.getItem("favorites");
-        if (saved) setFavorites(JSON.parse(saved));
-    }, []);
-
     const toggleFavorites = brewery => {
         setFavorites(prev =>
             prev.some(f => f.id === brewery.id)
@@ -32,7 +27,6 @@ const BreweryApp = ({favorites,setFavorites}) => {
                 : [...prev, brewery]
         );
     };
-
 
     const showOnMap = (lat, lng, zoomLevel) => {
         setLatitude(lat);
@@ -72,12 +66,13 @@ const BreweryApp = ({favorites,setFavorites}) => {
                 {/* Brewery List, PageSelector */}
 
                 <div className="row align-items-stretch">
-                    {/* Aufteilung der Reihe mit col Breweries und Map,  */}
+                    {/* Aufteilung der Reihe mit col Breweries und Map, d-flex ... damit die Blöcke nebeneinadner gleichgroß sind */}
                     <div className="col-7 d-flex">
                         <div className="card h-100 w-100">
                             <div className="card-header fw-bold">
                                 Breweries
                             </div>
+                            {/*p-0 ... Padding = 0 */}
                             <div className="card-body p-0">
                                 <BreweryList
                                     filter={filter}
@@ -101,10 +96,10 @@ const BreweryApp = ({favorites,setFavorites}) => {
 
                     <div className="col-5 d-flex">
                         <div className="card h-100 w-100">
-                            <div className="card-header bg-white fw-semibold">
+                            <div className="card-header fw-bold">
                                 Map
                             </div>
-                            <div className="card-body p-2">
+                            <div className="card-body p-0">
                                 <BreweryMap
                                     breweries={breweries}
                                     latitude={latitude}
@@ -117,8 +112,9 @@ const BreweryApp = ({favorites,setFavorites}) => {
                     </div>
                 </div>
 
-                <div className="card mt-5">
-                    <div className="card-header fw-bold">Favorites</div>
+                {/*3. Block Favoriten*/}
+                <div className="card mt-3">
+                    <div className="card-header bg-gold fw-bold">Favorites</div>
                     <div className="card-body">
                         <BreweryFavorites
                             favorites={favorites}

@@ -38,3 +38,9 @@
     transform: rotate(360deg);
   }
 }
+.bg-gold {
+  background-color: #F7DC6F;
+}
+.bg-navbar {
+  background-color:#FCEEB5 ;
+}
